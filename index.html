@@ -1,398 +1,349 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Betaald krijgen om te spelen en scrollen</title>
-  <link rel="icon" href="data:,">
-  <meta name="description" content="Download. Scroll & test games. Direct betaald." />
-  <link rel="preload" as="image" href="assets/freecash-logo.webp" />
-  <link rel="preload" as="image" href="assets/tiktok-logo.webp" />
-  <link rel="preload" as="image" href="assets/play-button.webp" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg:         #0d1117;
-      --card:       #161c24;
-      --border:     #212830;
-      --green:      #2cc76e;
-      --green-dark: #25b060;
-      --text:       #e8edf3;
-      --muted:      #7a8896;
-      --yellow:     #f5a623;
-      --font:       -apple-system, "Segoe UI", system-ui, sans-serif;
-    }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      -webkit-font-smoothing: antialiased;
-    }
-    .page {
-      width: 100%;
-      max-width: 500px;
-      padding: 32px 22px 52px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .logos {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .logo-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1b2230;
-    }
-    .logo-freecash img { width: 54px; height: 54px; object-fit: cover; }
-    .logo-tiktok { background: #010101; }
-    .logo-tiktok img { width: 36px; height: 36px; object-fit: contain; }
-    .logo-sep { color: var(--muted); font-size: 20px; font-weight: 400; }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      border: 1.5px solid var(--green);
-      border-radius: 999px;
-      padding: 6px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    .badge svg { width: 13px; height: 13px; flex-shrink: 0; }
-    h1.headline {
-      font-size: clamp(24px, 6vw, 36px);
-      font-weight: 800;
-      text-align: center;
-      line-height: 1.18;
-      color: #ffffff;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    h1.headline .accent { color: var(--green); }
-    .subtext {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--green);
-      color: #ffffff;
-      border: none;
-      border-radius: 16px;
-      padding: 17px 38px;
-      cursor: pointer;
-      text-decoration: none;
-      margin-bottom: 16px;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .cta-btn:hover  { background: var(--green-dark); transform: translateY(-1px); }
-    .cta-btn:active { transform: translateY(0); }
-    .cta-apple { width: 26px; height: 26px; flex-shrink: 0; fill: #ffffff; }
-    .cta-text { display: flex; flex-direction: column; align-items: flex-start; }
-    .cta-text strong { font-size: 16px; font-weight: 700; color: #ffffff; line-height: 1.25; white-space: nowrap; }
-    .cta-text span { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.72); white-space: nowrap; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gagnez de l'argent avec des jeux &amp; vidéos</title>
 
-    /* ── ACTIVATION BOX ── */
-    .activation-box {
-      width: 100%;
-      background: #1a1208;
-      border: 1.5px solid #3d2e0e;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .activation-badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: #f5a623;
-      color: #000;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-bottom-left-radius: 10px;
-    }
-    .activation-body {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px 16px 16px 16px;
-    }
-    .activation-lock {
-      font-size: 22px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .activation-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 6px;
-      padding-right: 70px;
-    }
-    .activation-text {
-      font-size: 13px;
-      color: #a09070;
-      line-height: 1.6;
-    }
-    .activation-highlight {
-      color: var(--yellow);
-      font-weight: 700;
-    }
+    <style>
+        :root {
+            --bg: #0e0f11;
+            --card: #181a1e;
+            --green: #4caf7d;
+            --green-dark: #3d9668;
+            --green-dim: rgba(76,175,125,0.15);
+            --text: #ffffff;
+            --muted: #8a8f9a;
+            --amber: #e6a817;
+            --amber-bg: rgba(230,168,23,0.15);
+            --border: rgba(255,255,255,0.07);
+        }
 
-    .section-label {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-      align-self: center;
-    }
-    .offer-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      width: 100%;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .offer-play-circle { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .offer-play-circle img { width: 46px; height: 46px; object-fit: contain; }
-    .play-fallback { display: none; fill: #ffffff; width: 15px; height: 15px; margin-left: 3px; }
-    .offer-info { flex: 1; min-width: 0; }
-    .offer-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
-    .offer-title { font-weight: 700; font-size: 14px; color: #fff; }
-    .offer-rate { background: var(--yellow); color: #000; font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 999px; letter-spacing: 0.02em; }
-    .offer-sub { font-size: 12px; font-weight: 400; color: var(--muted); }
-    .offer-price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; margin-right: 16px; }
-    .offer-price-val { font-size: 24px; font-weight: 700; color: var(--green); line-height: 1; }
-    .offer-stars { display: flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--yellow); }
-    .offer-stars svg { width: 11px; height: 11px; fill: var(--yellow); flex-shrink: 0; }
-    .offer-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 17px; }
-    .steps { display: flex; flex-direction: column; gap: 14px; width: 100%; margin-bottom: 44px; }
-    .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 18px 16px; display: flex; gap: 14px; align-items: flex-start; }
-    .step-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(44, 199, 110, 0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; }
-    .step-body { flex: 1; }
-    .step-title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 5px; line-height: 1.35; }
-    .step-desc { font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
-    .step-desc .hi { color: var(--green); font-weight: 500; }
-    .step-tag { display: inline-block; border: 1px solid rgba(44, 199, 110, 0.35); border-radius: 6px; padding: 4px 10px; font-size: 10.5px; font-weight: 600; color: rgba(44, 199, 110, 0.6); letter-spacing: 0.06em; text-transform: uppercase; }
-    footer { display: flex; flex-direction: column; align-items: center; gap: 7px; }
-    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 12px; color: var(--muted); }
-  </style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 20px 48px;
+        }
+
+        .screen { display: none; flex-direction: column; align-items: center; width: 100%; animation: fadeIn 0.25s ease; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .icons-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+        .icon-placeholder { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+        .icon-placeholder.green { background: linear-gradient(135deg, #2d7a52, #4caf7d); }
+        .icon-placeholder.black { background: #000; border: 1px solid #333; }
+        .icon-x { font-size: 16px; color: var(--muted); font-weight: 500; }
+
+        footer { margin-top: auto; padding-top: 36px; display: flex; gap: 18px; }
+        footer a { color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+
+        .pre-card {
+            width: 100%; max-width: 380px;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 22px; padding: 32px 24px; text-align: center;
+        }
+        .pre-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--green-dim); border: 1px solid rgba(76,175,125,0.3);
+            border-radius: 999px; padding: 5px 14px;
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--green); margin-bottom: 20px;
+        }
+        .pre-title { font-size: 26px; font-weight: 800; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .pre-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
+
+        .btn-yes {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 16px; background: var(--green); border-radius: 14px;
+            font-size: 16px; font-weight: 800; color: #fff;
+            border: none; cursor: pointer; margin-bottom: 10px;
+            transition: transform 0.1s ease, background 0.1s ease;
+        }
+        .btn-yes:active { transform: scale(0.97); background: var(--green-dark); }
+        .btn-yes svg { width: 18px; height: 18px; }
+
+        .btn-no {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px;
+            background: transparent; border: 1px solid var(--border);
+            border-radius: 14px; font-size: 16px; font-weight: 700;
+            color: var(--muted); cursor: pointer;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .btn-no:active { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+        .disq-wrap { width: 100%; max-width: 380px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .disq-icon {
+            width: 80px; height: 80px; border-radius: 24px;
+            background: rgba(220,53,69,0.1); border: 1px solid rgba(220,53,69,0.2);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px; font-size: 36px;
+        }
+        .disq-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.3px; line-height: 1.1; }
+        .disq-sub { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 32px; max-width: 300px; }
+        .disq-sub strong { color: var(--text); font-weight: 700; }
+
+        .btn-back {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 16px;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; font-size: 15px; font-weight: 700;
+            color: var(--text); cursor: pointer; transition: border-color 0.15s;
+        }
+        .btn-back:active { border-color: rgba(255,255,255,0.25); }
+        .btn-back svg { width: 16px; height: 16px; color: var(--muted); }
+
+        .badge-qualified {
+            display: inline-flex; align-items: center; gap: 6px;
+            border: 1.5px solid var(--green); border-radius: 999px;
+            padding: 6px 16px; font-size: 11px; font-weight: 700;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--green); margin-bottom: 22px;
+        }
+        .badge-qualified svg { width: 13px; height: 13px; }
+
+        h1 { font-size: 36px; font-weight: 800; text-align: center; line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.5px; }
+        h1 .green { color: var(--green); }
+
+        .sub { font-size: 14px; color: var(--muted); text-align: center; margin-bottom: 28px; line-height: 1.5; }
+
+        .btn-cta {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; max-width: 380px; padding: 17px 24px;
+            background: var(--green); border-radius: 16px;
+            text-decoration: none; color: #fff; margin-bottom: 36px;
+            transition: transform 0.1s ease, background 0.1s ease;
+            border: none; cursor: pointer;
+        }
+        .btn-cta:active { transform: scale(0.97); background: var(--green-dark); }
+        .btn-cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+        .btn-cta-text { text-align: left; }
+        .btn-cta-text .line1 { font-size: 16px; font-weight: 800; display: block; }
+        .btn-cta-text .line2 { font-size: 12px; font-weight: 400; opacity: 0.85; display: block; margin-top: 2px; }
+
+        .section-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--muted);
+            margin-bottom: 14px; text-align: center;
+            width: 100%; max-width: 380px;
+        }
+
+        .offer-card {
+            width: 100%; max-width: 380px; background: var(--card);
+            border: 1px solid var(--border); border-radius: 18px;
+            padding: 16px; display: flex; align-items: center;
+            gap: 12px; margin-bottom: 12px; cursor: pointer;
+        }
+        .offer-thumb {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: #000; border: 2px solid #cc1a1a;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .offer-info { flex: 1; min-width: 0; }
+        .offer-tag {
+            display: inline-block; background: var(--amber-bg); color: var(--amber);
+            font-size: 9px; font-weight: 800; letter-spacing: 0.8px;
+            padding: 2px 7px; border-radius: 6px; margin-bottom: 3px; text-transform: uppercase;
+        }
+        .offer-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+        .offer-desc { font-size: 11px; color: var(--muted); }
+        .offer-right { text-align: right; flex-shrink: 0; }
+        .offer-amount { font-size: 22px; font-weight: 800; color: var(--green); line-height: 1; }
+        .offer-stars { font-size: 10px; color: var(--amber); margin-top: 3px; }
+        .offer-chevron { color: var(--muted); font-size: 20px; margin-left: 2px; line-height: 1; }
+
+        .warning-card {
+            width: 100%; max-width: 380px; background: var(--card);
+            border: 1px solid rgba(230,168,23,0.2); border-radius: 18px;
+            padding: 16px; display: flex; gap: 12px; align-items: flex-start;
+            margin-bottom: 32px; position: relative;
+        }
+        .warning-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: var(--amber-bg); display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; font-size: 17px; margin-top: 2px;
+        }
+        .warning-badge {
+            position: absolute; top: 14px; right: 14px;
+            background: var(--amber); color: #000;
+            font-size: 9px; font-weight: 800; letter-spacing: 0.5px;
+            padding: 3px 8px; border-radius: 6px; text-transform: uppercase;
+        }
+        .wtitle { font-size: 14px; font-weight: 800; margin-bottom: 6px; padding-right: 80px; }
+        .wdesc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+        .wdesc strong { color: var(--text); font-weight: 700; }
+
+        .how-card {
+            width: 100%; max-width: 380px; background: var(--card);
+            border: 1px solid var(--border); border-radius: 18px;
+            padding: 18px 16px; display: flex; gap: 14px;
+            align-items: flex-start; margin-bottom: 10px;
+        }
+        .how-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            background: var(--green-dim); display: flex;
+            align-items: center; justify-content: center;
+            flex-shrink: 0; color: var(--green);
+        }
+        .how-icon svg { width: 20px; height: 20px; }
+        .how-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .how-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+        .how-desc strong { color: var(--green); font-weight: 700; }
+        .how-pill {
+            display: inline-block; border: 1px solid var(--border);
+            border-radius: 999px; padding: 4px 12px;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+            text-transform: uppercase; color: var(--muted);
+        }
+    </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="logos">
-    <div class="logo-box logo-freecash">
-      <img src="assets/freecash-logo.webp" alt="Freecash" fetchpriority="high" />
-    </div>
-    <span class="logo-sep">×</span>
-    <div class="logo-box logo-tiktok">
-      <img src="assets/tiktok-logo.webp" alt="TikTok" fetchpriority="high" />
-    </div>
-  </div>
-
-  <div class="badge">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-      <polyline points="22 4 12 14.01 9 11.01"/>
-    </svg>
-    Je komt in aanmerking
-  </div>
-
-  <h1 class="headline">
-    Betaald krijgen om te <span class="accent">Spelen</span><br>
-    en te <span class="accent">Scrollen</span>
-  </h1>
-  <p class="subtext">Download. Scroll &amp; test games. Direct betaald.</p>
-
-  <a
-    href="https://taptrcks.com/r/eyJ0IjoiZnJlZWNhc2gtY3BpIiwidSI6IjY5YTVkZDcyYmU3NGI4MGNjYzE0MWNlNSIsInRzIjoxNzc1MjE1Mjk3MTIxfQ?s2=mz"
-    class="cta-btn"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <svg class="cta-apple" viewBox="0 0 24 24">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-    </svg>
-    <div class="cta-text">
-      <strong>Download &amp; Meld je aan</strong>
-      <span>iOS &amp; Android</span>
-    </div>
-  </a>
-
-  <span class="section-label">Uitgelichte aanbiedingen</span>
-  <div class="offer-card">
-    <div class="offer-play-circle">
-      <img
-        src="assets/play-button.webp"
-        alt="Play"
-        fetchpriority="high"
-        onerror="this.style.display='none'; document.getElementById('play-fallback').style.display='block';"
-      />
-      <svg id="play-fallback" class="play-fallback" viewBox="0 0 24 24">
-        <polygon points="6,3 21,12 6,21"/>
-      </svg>
-    </div>
-    <div class="offer-info">
-      <div class="offer-title-row">
-        <span class="offer-title">Scroll video's op FreeCash</span>
-        <span class="offer-rate">€149/UUR</span>
-      </div>
-      <div class="offer-sub">Verdien €149 per uur scrollen</div>
-    </div>
-    <div class="offer-price">
-      <span class="offer-price-val">€149</span>
-      <span class="offer-stars">
-        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        5.0
-      </span>
-    </div>
-    <span class="offer-arrow">›</span>
-  </div>
-
-  <!-- ACTIVATION REQUIRED -->
-  <div class="activation-box">
-    <span class="activation-badge">⚠ BELANGRIJK</span>
-    <div class="activation-body">
-      <span class="activation-lock">🔒</span>
-      <div>
-        <div class="activation-title">Activatie vereist</div>
-        <div class="activation-text">Nieuwe gebruikers: Voltooi <span class="activation-highlight">2 snelle taken</span> om de Scroll Aanbieding te ontgrendelen. Taken al gedaan? Ga gewoon naar de Scroll Aanbieding in je dashboard!</div>
-      </div>
-    </div>
-  </div>
-
-  <span class="section-label">Hoe het werkt</span>
-  <div class="steps">
-
-    <div class="step-card">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M5 19h14"/>
-        </svg>
-      </div>
-      <div class="step-body">
-        <div class="step-title">Download de app</div>
-        <div class="step-desc">Installeer FreeCash &amp; ontvang direct <span class="hi">€10.</span></div>
-        <span class="step-tag">Gratis download</span>
-      </div>
+    <div id="screen-pre" class="screen active">
+        <div class="icons-row">
+            <img src="top_icon.webp" alt="App Icon" width="52" height="52" style="border-radius:14px;object-fit:cover;" fetchpriority="high">
+            <span class="icon-x">×</span>
+            <div class="icon-placeholder black">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+            </div>
+        </div>
+        <div class="pre-card">
+            <div class="pre-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Vérification d'âge
+            </div>
+            <div class="pre-title">Avez-vous 21 ans<br>ou plus ?</div>
+            <p class="pre-sub">Vous devez avoir 21 ans ou plus<br>pour accéder à cette offre.</p>
+            <button class="btn-yes" onclick="showScreen('screen-main')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                Oui, j'ai 21 ans ou plus
+            </button>
+            <button class="btn-no" onclick="showScreen('screen-disq')">Non, j'ai moins de 21 ans</button>
+        </div>
+        <footer><a href="#">Politique de confidentialité</a><a href="#">Conditions</a><a href="#">Cookies</a></footer>
     </div>
 
-    <div class="step-card">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="7" width="20" height="11" rx="5"/>
-          <line x1="7" y1="12" x2="11" y2="12"/><line x1="9" y1="10" x2="9" y2="14"/>
-          <circle cx="15.5" cy="10.5" r="0.9" fill="currentColor" stroke="none"/>
-          <circle cx="17.5" cy="13" r="0.9" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <div class="step-body">
-        <div class="step-title">Verdien door video's te scrollen en games te testen</div>
-        <div class="step-desc">Scroll, speel games, doe opdrachten &amp; verdien <span class="hi">echt geld.</span></div>
-        <span class="step-tag">Makkelijk te starten</span>
-      </div>
+    <div id="screen-disq" class="screen">
+        <div class="disq-wrap">
+            <div class="disq-icon">🚫</div>
+            <div class="disq-title">Vous devez avoir<br>21 ans ou plus</div>
+            <p class="disq-sub">Cette offre est réservée aux personnes de 21 ans et plus. N'hésitez pas à revenir plus tard.</p>
+            <button class="btn-back" onclick="showScreen('screen-pre')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                Terug
+            </button>
+        </div>
+        <footer><a href="#">Politique de confidentialité</a><a href="#">Conditions</a><a href="#">Cookies</a></footer>
     </div>
 
-    <div class="step-card">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="5" width="20" height="14" rx="3"/>
-          <path d="M2 10h20"/>
-          <circle cx="17" cy="14.5" r="1.2" fill="currentColor" stroke="none"/>
-        </svg>
-      </div>
-      <div class="step-body">
-        <div class="step-title">Wanneer je wil uitbetaald worden</div>
-        <div class="step-desc">Opnemen via <span class="hi">PayPal, bankoverschrijving of cadeaubonnen.</span></div>
-        <span class="step-tag">Snelle uitbetaling</span>
-      </div>
+    <div id="screen-main" class="screen">
+        <div class="icons-row">
+            <img src="top_icon.webp" alt="App Icon" width="52" height="52" style="border-radius:14px;object-fit:cover;">
+            <span class="icon-x">×</span>
+            <div class="icon-placeholder black">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+            </div>
+        </div>
+
+        <div class="badge-qualified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Vous êtes approuvé
+        </div>
+
+        <h1>Gagnez de l'argent en <span class="green">jouant</span><br>et en <span class="green">scrollant</span></h1>
+        <p class="sub">Téléchargez. Scrollez &amp; testez des jeux. Soyez payé.</p>
+
+        <a href="https://rainawards.com/r/eyJ0IjoiZnJlZWNhc2gtY3BpIiwidSI6IjY5YTVkZDcyYmU3NGI4MGNjYzE0MWNlNSIsInRzIjoxNzc1Mzg3MDQzNjA3fQ?s1=french_lander" class="btn-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="btn-cta-text">
+                <span class="line1">Télécharger &amp; créer un compte</span>
+                <span class="line2">iOS &amp; Android</span>
+            </div>
+        </a>
+
+        <p class="section-label">Offres en vedette</p>
+
+        <div class="offer-card">
+            <div class="offer-thumb">
+                <img src="tiktok_play.webp" alt="Betaald per taak" width="48" height="48" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+            </div>
+            <div class="offer-info">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+                    <div class="offer-tag">PAYÉ PAR TÂCHE</div>
+                    <span style="background:var(--amber);color:#000;font-size:9px;font-weight:800;padding:2px 7px;border-radius:6px;letter-spacing:0.5px;">149 €/H</span>
+                </div>
+                <div class="offer-title">Scrollez des vidéos sur FreeCash</div>
+                <div class="offer-desc">Gagnez 149 € pour chaque heure de scroll</div>
+            </div>
+            <div class="offer-right">
+                <div class="offer-amount">149 €</div>
+                <div class="offer-stars">★ 5.0</div>
+            </div>
+            <span class="offer-chevron">›</span>
+        </div>
+
+        <div class="warning-card">
+            <div class="warning-icon">🔒</div>
+            <div>
+                <div class="wtitle">Activation requise</div>
+                <div class="wdesc">Nouveaux utilisateurs : Complétez <strong>2 tâches rapides</strong> pour débloquer l'offre de scroll. Déjà fait ? Accédez directement à l'offre sur votre tableau de bord !</div>
+            </div>
+            <div class="warning-badge">⚠ Important</div>
+        </div>
+
+        <p class="section-label">Comment ça marche</p>
+
+        <div class="how-card">
+            <div class="how-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </div>
+            <div>
+                <div class="how-title">Téléchargez l'application</div>
+                <div class="how-desc">Installez FreeCash &amp; recevez <strong>10 € instantanément.</strong></div>
+                <span class="how-pill">Gratuit pour commencer</span>
+            </div>
+        </div>
+
+        <div class="how-card">
+            <div class="how-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div>
+                <div class="how-title">Gagnez en scrollant des vidéos et en testant des jeux</div>
+                <div class="how-desc">Scrollez, jouez, complétez des tâches &amp; gagnez <strong>de l'argent réel.</strong></div>
+                <span class="how-pill">Commencer tout de suite</span>
+            </div>
+        </div>
+
+        <div class="how-card">
+            <div class="how-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div>
+                <div class="how-title">Recevez votre paiement</div>
+                <div class="how-desc">Retirez vos gains directement sur votre compte bancaire.</div>
+                <span class="how-pill">Paiement rapide</span>
+            </div>
+        </div>
+
+        <footer><a href="#">Politique de confidentialité</a><a href="#">Conditions</a><a href="#">Cookies</a></footer>
     </div>
 
-  </div>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#">Privacybeleid</a>
-      <a href="#">Gebruiksvoorwaarden</a>
-      <a href="#">Disclaimer</a>
-    </div>
-    <span class="footer-copy">© 2026 Alle rechten voorbehouden.</span>
-  </footer>
-
-</div>
-<script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script>
-<script>
-// TikTok WebView Bypass - Forces links to open in default browser
-function makeTikTokExternal(url) {
-    const ua = navigator.userAgent.toLowerCase();
-    const isAndroid = /android/.test(ua);
-    if (isAndroid) {
-        // Android Intent URL
-        const cleanUrl = url.replace(/^https?:\/\//, '');
-        return `intent://${cleanUrl}#Intent;scheme=https;end`;
-    } else {
-        // iOS x-safari-https trick (works on everything else too)
-        return `x-safari-${url}`;
-    }
-}
-// Apply to ALL external http/https links on the page
-document.addEventListener('DOMContentLoaded', function() {
-    const allLinks = document.querySelectorAll('a[href^="http"]');
-    
-    allLinks.forEach(link => {
-        const original = link.getAttribute('href');
-        
-        // Skip if already rewritten or it's an anchor link
-        if (original.startsWith('x-safari-') || 
-            original.startsWith('intent://') || 
-            original.startsWith('#')) {
-            return;
+    <script>
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0, 0);
         }
-        
-        link.setAttribute('href', makeTikTokExternal(original));
-        
-        // Optional: open in new tab (recommended for offers)
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-    });
-});
-</script>
+    </script>
+
 </body>
 </html>
